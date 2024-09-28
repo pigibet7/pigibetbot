@@ -146,7 +146,7 @@ Your referral link is:
         { text: 'Join Community 🧑‍💻', url: 'https://t.me/pigi_bet_channel' }
       ],
       [
-        { text: 'Play Now', web_app: { url: 'https://pigibetbot.com/' } }
+        { text: 'Play Now', web_app: { url: 'https://pigibetapp.onrender.com/' } }
       ]
     ]
   };
