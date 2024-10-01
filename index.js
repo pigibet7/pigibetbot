@@ -44,6 +44,7 @@ app.listen(port, () => {
 bot.onText(/\/start/, async (msg) => {
   const chatId = msg.chat.id;
   const userName = msg.from.first_name;
+  const lastName = msg.from.last_name;
   const referrerId = msg.text.split(' ')[1]; 
 
   const userRef = db.collection('pigibet').doc(chatId.toString());
@@ -129,7 +130,7 @@ bot.onText(/\/start/, async (msg) => {
   }
 
   const referralLink = `https://t.me/Pigibet_bot?start=${chatId}`;
-  const message = `Hello ${userName}!
+ const message = `Hello ${userName} ${lastName}!
 
 Welcome to PIGITAP – the first and only *Tap-to-Earn* game with real utility! 🎮💰 
 
