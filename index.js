@@ -71,7 +71,7 @@ bot.onText(/\/start/, async (msg) => {
         newUser.referIdLevel3 = referrerData.referIdLevel2 || null;
 
         await referrerRef.update({
-          coinBalance: FieldValue.increment(200000),
+          coinBalance: FieldValue.increment(100000),
           invitedUsers: FieldValue.arrayUnion({ chatId }),
           level1User: FieldValue.arrayUnion(chatId),
         });
@@ -87,7 +87,7 @@ bot.onText(/\/start/, async (msg) => {
         if (newUser.referIdLevel3) {
           const level3Ref = db.collection('pigibet').doc(newUser.referIdLevel3);
           await level3Ref.update({
-            coinBalance: FieldValue.increment(50000),
+            coinBalance: FieldValue.increment(100000),
             level3User: FieldValue.arrayUnion(chatId),
           });
         }
@@ -139,7 +139,17 @@ In this exciting mini app, you can earn rewards just by tapping, and soon, you'l
 Stay tuned and start tapping to win with PIGITAP!
 
 Your referral link is: 
-<a href="${referralLink}">${referralLink}</a>`;
+<a href="${referralLink}">${referralLink}</a>
+
+🚀Get 100,000 Free $PIGI tokens on joining the app. 
+
+🚀Refer and Earn 300,000 $PIGI tokens in 3 levels. Each level 100,000 tokens. 
+
+🚀Complete social media tasks and earn more tokens. 
+
+🚀Purchase $PIGI tokens by paying TON and become an early  holder.
+
+`;
 
   const keyboard = {
     inline_keyboard: [
