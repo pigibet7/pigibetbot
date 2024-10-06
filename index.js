@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/user/:chatId', async (req, res) => {
   const chatId = req.params.chatId;
   try {
-    const userRef = db.collection('pigibet').doc(chatId.toString());
+    const userRef = db.collection('pigibetdb').doc(chatId.toString());
     const userDoc = await userRef.get();
 
     if (!userDoc.exists) {
