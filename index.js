@@ -47,7 +47,7 @@ bot.onText(/\/start/, async (msg) => {
   const lastName = msg.from.last_name;
   const referrerId = msg.text.split(' ')[1]; 
 
-  const userRef = db.collection('pigibet').doc(chatId.toString());
+  const userRef = db.collection('pigibetdb').doc(chatId.toString());
   const userDoc = await userRef.get();
 
   if (!userDoc.exists) {
@@ -61,7 +61,7 @@ bot.onText(/\/start/, async (msg) => {
     };
 
     if (referrerId) {
-      const referrerRef = db.collection('pigibet').doc(referrerId);
+      const referrerRef = db.collection('pigibetdb').doc(referrerId);
       const referrerDoc = await referrerRef.get();
 
       if (referrerDoc.exists) {
@@ -77,7 +77,7 @@ bot.onText(/\/start/, async (msg) => {
         });
 
         if (newUser.referIdLevel2) {
-          const level2Ref = db.collection('pigibet').doc(newUser.referIdLevel2);
+          const level2Ref = db.collection('pigibetdb').doc(newUser.referIdLevel2);
           await level2Ref.update({
             coinBalance: FieldValue.increment(100000),
             level2User: FieldValue.arrayUnion(chatId),
@@ -85,7 +85,7 @@ bot.onText(/\/start/, async (msg) => {
         }
 
         if (newUser.referIdLevel3) {
-          const level3Ref = db.collection('pigibet').doc(newUser.referIdLevel3);
+          const level3Ref = db.collection('pigibetdb').doc(newUser.referIdLevel3);
           await level3Ref.update({
             coinBalance: FieldValue.increment(100000),
             level3User: FieldValue.arrayUnion(chatId),
@@ -97,7 +97,7 @@ bot.onText(/\/start/, async (msg) => {
     await userRef.set(newUser);
   } else {
     if (!userDoc.data().referId && referrerId) {
-      const referrerRef = db.collection('pigibet').doc(referrerId);
+      const referrerRef = db.collection('pigibetdb').doc(referrerId);
       const referrerDoc = await referrerRef.get();
       const referrerData = referrerDoc.data();
 
@@ -112,14 +112,14 @@ bot.onText(/\/start/, async (msg) => {
       });
 
       if (referrerData.referId) {
-        const level2Ref = db.collection('pigibet').doc(referrerData.referId);
+        const level2Ref = db.collection('pigibetdb').doc(referrerData.referId);
         await level2Ref.update({
           level2User: FieldValue.arrayUnion(chatId),
         });
       }
 
       if (referrerData.referIdLevel2) {
-        const level3Ref = db.collection('pigibet').doc(referrerData.referIdLevel2);
+        const level3Ref = db.collection('pigibetdb').doc(referrerData.referIdLevel2);
         await level3Ref.update({
           level3User: FieldValue.arrayUnion(chatId),
         });
